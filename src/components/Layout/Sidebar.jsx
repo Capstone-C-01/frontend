@@ -1,12 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 
-import HomeIcon from '../Icons/HomeIcon';
-import ReportIcon from '../Icons/ReportIcon';
-import SettingIcon from '../Icons/SettingIcon';
-import PlantIcon from '../Icons/PlantIcon';
+import { HomeIcon, PlantIcon, ReportIcon, SettingIcon } from '../Icons';
 
 import classNames from '@/utils/classNames';
-import Link from 'next/link';
 
 const Sidebar = ({ className, ...props }) => {
   const sidebarItem = [

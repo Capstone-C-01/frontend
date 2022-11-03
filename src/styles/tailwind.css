@@ -17,4 +17,10 @@
       width: calc(100vw - 48px);
     }
   }
+
+  .grid-main-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
 }
