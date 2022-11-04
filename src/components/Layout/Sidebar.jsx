@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { HomeIcon, PlantIcon, ReportIcon, SettingIcon } from '../Icons';
+import { GalleryIcon, HomeIcon, PlantIcon, ReportIcon, SettingIcon } from '../Icons';
 
 import classNames from '@/utils/classNames';
 
@@ -26,6 +26,11 @@ const Sidebar = ({ className, ...props }) => {
       text: 'Plants',
       link: '/plants',
       icon: <PlantIcon />
+    },
+    {
+      text: 'Plants Gallery',
+      link: '/plants/gallery',
+      icon: <GalleryIcon />
     }
   ];
 
@@ -38,15 +43,12 @@ const Sidebar = ({ className, ...props }) => {
       <div className="">
         {sidebarItem.map((item, index) => {
           return (
-            <div
-              className="mb-2 flex w-full cursor-pointer gap-5 px-6 py-2 transition-colors hover:rounded-md hover:bg-sky-100 hover:ring-1"
-              key={index}
-            >
-              {item.icon}
-              <Link href={item.link}>
+            <Link href={item.link} key={index}>
+              <div className="mb-2 flex w-full cursor-pointer gap-5 px-6 py-2 transition-colors hover:rounded-md hover:bg-sky-100 hover:ring-1">
+                {item.icon}
                 <p className="text-base font-bold tracking-tight">{item.text}</p>
-              </Link>
-            </div>
+              </div>
+            </Link>
           );
         })}
       </div>

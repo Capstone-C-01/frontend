@@ -15,8 +15,9 @@ import { Chart } from '@/components/Chart';
 import { Button } from '@/components/Button';
 
 import plantBG from '@/public/img/plant-bg.png';
+import { HeaderText } from '@/components/Text';
 
-const Dashboard = (props) => {
+const DashboardPage = (props) => {
   const [plantingData, setPlantingData] = useState({ data: '' });
 
   return (
@@ -30,24 +31,20 @@ const Dashboard = (props) => {
   );
 };
 
-Dashboard.propTypes = {};
+DashboardPage.propTypes = {};
 
-export default Dashboard;
+export default DashboardPage;
 
 const DashboardWhenEmpty = () => {
   return (
     <>
-      <div className="mb-7">
-        <div className="mb-10">
-          <h1 className="font-dm-sans-bold text-4xl">Welcome!</h1>
-          <p className="text-base text-off-gray">
-            Nothing is displayed because there are no crops are planted at this time.
-          </p>
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <Image src={plantBG} alt="A set of plant" />
-          <Button className="mt-12">Start Planting</Button>
-        </div>
+      <HeaderText
+        title="Welcome!"
+        subTitle="Nothing is displayed because there are no crops are planted at this time."
+      />
+      <div className="flex flex-col items-center justify-center">
+        <Image src={plantBG} alt="A set of plant" />
+        <Button className="mt-12">Start Planting</Button>
       </div>
     </>
   );
@@ -56,10 +53,7 @@ const DashboardWhenEmpty = () => {
 const OverviewDashboard = ({ data, ...props }) => {
   return (
     <>
-      <div className="mb-7">
-        <h1 className="font-dm-sans-bold text-4xl">Dashboard</h1>
-        <p className="text-base text-off-gray">Monitoring Status on ...</p>
-      </div>
+      <HeaderText title="Dashboard  " subTitle="Monitoring Status on Wednesday, 04 May 2022" />
       <div className="overview" {...props}>
         <section className="plant-status grid-main-3 mb-12">
           <CardIcon title="Plant's Name" desc="Bok Choy" icon={CirclePlantIcon} />

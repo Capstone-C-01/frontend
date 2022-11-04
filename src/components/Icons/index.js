@@ -2,6 +2,7 @@ import CircleCalendarIcon from './CircleCalendarIcon';
 import CircleCameraIcon from './CircleCameraIcon';
 import CircleCountIcon from './CircleCountIcon';
 import CirclePlantIcon from './CirclePlantIcon';
+import GalleryIcon from './GalleryIcon';
 import HomeIcon from './HomeIcon';
 import LampIcon from './LampIcon';
 import PeopleIcon from './PeopleIcon';
@@ -9,6 +10,7 @@ import PinIcon from './PinIcon';
 import PlantIcon from './PlantIcon';
 import ReportIcon from './ReportIcon';
 import SettingIcon from './SettingIcon';
+import SortIcon from './SortIcon';
 import WaterDropIcon from './WaterDropIcon';
 
 export {
@@ -16,6 +18,7 @@ export {
   CircleCameraIcon,
   CircleCountIcon,
   CirclePlantIcon,
+  GalleryIcon,
   HomeIcon,
   LampIcon,
   PeopleIcon,
@@ -23,5 +26,6 @@ export {
   PlantIcon,
   ReportIcon,
   SettingIcon,
+  SortIcon,
   WaterDropIcon
 };
