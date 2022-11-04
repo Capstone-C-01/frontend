@@ -4,8 +4,13 @@ import Link from 'next/link';
 import { GalleryIcon, HomeIcon, PlantIcon, ReportIcon, SettingIcon } from '../Icons';
 
 import classNames from '@/utils/classNames';
+import { useRouter } from 'next/router';
 
 const Sidebar = ({ className, ...props }) => {
+  const router = useRouter();
+
+  console.log(router);
+
   const sidebarItem = [
     {
       text: 'Dashboard',
@@ -43,7 +48,14 @@ const Sidebar = ({ className, ...props }) => {
       <div className="">
         {sidebarItem.map((item, index) => {
           return (
-            <Link href={item.link} key={index}>
+            <Link
+              href={item.link}
+              key={index}
+              className={
+                router.pathname === item.link &&
+                'text-main-green [&_path]:fill-main-green [&_svg]:stroke-main-green'
+              }
+            >
               <div className="mb-2 flex w-full cursor-pointer gap-5 px-6 py-2 transition-colors hover:rounded-md hover:bg-sky-100 hover:ring-1">
                 {item.icon}
                 <p className="text-base font-bold tracking-tight">{item.text}</p>
