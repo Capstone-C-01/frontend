@@ -9,7 +9,7 @@ const Sidebar = ({ className, ...props }) => {
   const sidebarItem = [
     {
       text: 'Dashboard',
-      link: '/',
+      link: '/dashboard',
       icon: <HomeIcon />
     },
     {
