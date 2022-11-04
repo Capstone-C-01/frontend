@@ -198,7 +198,7 @@ const MainTable = ({ columnsList, dataList, className, withPagination = true, ..
           <div className="showed-row">
             {pageIndex * pageSize + 1} -{' '}
             {(pageIndex + 1) * pageSize > data.length ? data.length : (pageIndex + 1) * pageSize} of{' '}
-            {data.length}
+            {pageCount}
           </div>
           <div className="control"></div>
 

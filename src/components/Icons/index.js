@@ -2,6 +2,7 @@ import CircleCalendarIcon from './CircleCalendarIcon';
 import CircleCameraIcon from './CircleCameraIcon';
 import CircleCountIcon from './CircleCountIcon';
 import CirclePlantIcon from './CirclePlantIcon';
+import GalleryIcon from './GalleryIcon';
 import HomeIcon from './HomeIcon';
 import LampIcon from './LampIcon';
 import PeopleIcon from './PeopleIcon';
@@ -17,6 +18,7 @@ export {
   CircleCameraIcon,
   CircleCountIcon,
   CirclePlantIcon,
+  GalleryIcon,
   HomeIcon,
   LampIcon,
   PeopleIcon,
