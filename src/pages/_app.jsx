@@ -1,5 +1,7 @@
 import { Layout } from '@/components/Layout';
 import Head from 'next/head';
+
+import 'react-image-lightbox/style.css';
 import '../styles/globals.css';
 import '../styles/tailwind.css';
 
