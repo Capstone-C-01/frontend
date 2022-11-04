@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { useTable, usePagination } from 'react-table';
+import { useTable, usePagination, useSortBy } from 'react-table';
 
 import classNames from '@/utils/classNames';
+import { SortIcon } from '../Icons';
 
 const MainTable = ({ columnsList, dataList, className, withPagination = true, ...props }) => {
   const columns = useMemo(
@@ -59,6 +60,62 @@ const MainTable = ({ columnsList, dataList, className, withPagination = true, ..
         water_level: '45%',
         light_status: 'On',
         time: 'May 4, 2020'
+      },
+      {
+        ph: '6.87',
+        tds: '800ppm',
+        water_level: '45%',
+        light_status: 'On',
+        time: 'May 4, 2020'
+      },
+      {
+        ph: '6.17',
+        tds: '800ppm',
+        water_level: '45%',
+        light_status: 'On',
+        time: 'May 4, 2020'
+      },
+      {
+        ph: '6.67',
+        tds: '800ppm',
+        water_level: '45%',
+        light_status: 'On',
+        time: 'May 4, 2020'
+      },
+      {
+        ph: '6.37',
+        tds: '800ppm',
+        water_level: '45%',
+        light_status: 'On',
+        time: 'May 4, 2020'
+      },
+      {
+        ph: '6.87',
+        tds: '800ppm',
+        water_level: '45%',
+        light_status: 'On',
+        time: 'May 4, 2020'
+      },
+      {
+        ph: '6.17',
+        tds: '800ppm',
+        water_level: '45%',
+        light_status: 'On',
+        time: 'May 4, 2020'
+      },
+      {
+        ph: '6.67',
+        tds: '800ppm',
+        water_level: '45%',
+        light_status: 'On',
+        time: 'May 4, 2020'
+      },
+      {
+        ph: '6.37',
+        tds: '800ppm',
+        water_level: '45%',
+        light_status: 'On',
+        time: 'May 4, 2020'
       }
     ],
     []
@@ -84,13 +141,12 @@ const MainTable = ({ columnsList, dataList, className, withPagination = true, ..
       columns,
       data,
       initialState: {
-        pageSize: 2
+        pageSize: 10
       }
     },
+    useSortBy,
     usePagination
   );
-
-  console.log(page);
 
   return (
     <div
@@ -104,8 +160,13 @@ const MainTable = ({ columnsList, dataList, className, withPagination = true, ..
           {headerGroups.map((headerGroup, index) => (
             <tr key={index} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column, index) => (
-                <th key={index} {...column.getHeaderProps()}>
+                <th key={index} {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
+                  <SortIcon
+                    className="ml-1 inline"
+                    isSort={column.isSorted}
+                    sortDesc={column.isSortedDesc}
+                  />
                 </th>
               ))}
             </tr>
@@ -135,7 +196,9 @@ const MainTable = ({ columnsList, dataList, className, withPagination = true, ..
       {withPagination && (
         <div className="pagination flex w-full justify-between border-t bg-paleblue p-4 font-dm-sans-medium text-sm text-off-gray">
           <div className="showed-row">
-            {Number(page[0].id) + 1} - {Number(page[page.length - 1].id) + 1} of {data.length}
+            {pageIndex * pageSize + 1} -{' '}
+            {(pageIndex + 1) * pageSize > data.length ? data.length : (pageIndex + 1) * pageSize} of{' '}
+            {data.length}
           </div>
           <div className="control"></div>
 
@@ -149,7 +212,7 @@ const MainTable = ({ columnsList, dataList, className, withPagination = true, ..
                 }}
                 className="bg-transparent focus-visible:outline-none"
               >
-                {[1, 2, 3, 4, 5].map((pageSize) => (
+                {[5, 10, 20, 30].map((pageSize) => (
                   <option key={pageSize} value={pageSize}>
                     {pageSize}
                   </option>

@@ -9,6 +9,7 @@ import PinIcon from './PinIcon';
 import PlantIcon from './PlantIcon';
 import ReportIcon from './ReportIcon';
 import SettingIcon from './SettingIcon';
+import SortIcon from './SortIcon';
 import WaterDropIcon from './WaterDropIcon';
 
 export {
@@ -23,5 +24,6 @@ export {
   PlantIcon,
   ReportIcon,
   SettingIcon,
+  SortIcon,
   WaterDropIcon
 };
