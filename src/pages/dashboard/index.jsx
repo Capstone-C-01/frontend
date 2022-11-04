@@ -12,12 +12,12 @@ import {
   WaterDropIcon
 } from '@/components/Icons';
 import { Chart } from '@/components/Chart';
-
-import plantBG from '@/public/img/plant-bg.png';
 import { Button } from '@/components/Button';
 
+import plantBG from '@/public/img/plant-bg.png';
+
 const Dashboard = (props) => {
-  const [plantingData, setPlantingData] = useState({});
+  const [plantingData, setPlantingData] = useState({ data: '' });
 
   return (
     <main>

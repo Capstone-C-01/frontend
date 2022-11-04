@@ -26,9 +26,9 @@ const Layout = ({ children }) => {
       )}
     >
       <div className="container grid grid-cols-12 gap-x-8 gap-y-6">
-        <Header className="col-span-12 col-start-1 row-start-1" />
-        <Sidebar className="col-span-3 col-start-1 row-start-2" />
-        <div className="col-span-8 col-start-4 row-start-2">{children}</div>
+        <Header className="col-span-9 col-start-4 row-start-1" />
+        <Sidebar className="fixed top-0 col-span-3 col-start-1 row-start-1" />
+        <div className="col-span-8 col-start-4 row-start-1  pt-[104px]">{children}</div>
       </div>
     </div>
   );
