@@ -1,4 +1,5 @@
 import CircleCalendarIcon from './CircleCalendarIcon';
+import CircleCameraIcon from './CircleCameraIcon';
 import CircleCountIcon from './CircleCountIcon';
 import CirclePlantIcon from './CirclePlantIcon';
 import HomeIcon from './HomeIcon';
@@ -12,6 +13,7 @@ import WaterDropIcon from './WaterDropIcon';
 
 export {
   CircleCalendarIcon,
+  CircleCameraIcon,
   CircleCountIcon,
   CirclePlantIcon,
   HomeIcon,
