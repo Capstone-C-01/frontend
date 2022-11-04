@@ -6,7 +6,7 @@ import { MainTable } from '@/components/Table';
 
 const ReportsPage = () => {
   return (
-    <div>
+    <main>
       <HeaderText
         title="Reports"
         subTitle="Plant growth and status reports on Wednesday, 04 May 2022"
@@ -28,7 +28,7 @@ const ReportsPage = () => {
           <MainTable className="w-full" />
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 
