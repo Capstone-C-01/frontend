@@ -29,7 +29,7 @@ const Sidebar = ({ className, ...props }) => {
     },
     {
       text: 'Plants',
-      link: '/plants',
+      link: '/plants/plant-list',
       icon: <PlantIcon />
     },
     {
