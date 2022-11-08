@@ -12,6 +12,8 @@ import ReportIcon from './ReportIcon';
 import SettingIcon from './SettingIcon';
 import SortIcon from './SortIcon';
 import WaterDropIcon from './WaterDropIcon';
+import WaterGlassIcon from './WaterGlassIcon';
+import pHIcon from './pHIcon';
 
 export {
   CircleCalendarIcon,
@@ -27,5 +29,7 @@ export {
   ReportIcon,
   SettingIcon,
   SortIcon,
-  WaterDropIcon
+  WaterDropIcon,
+  WaterGlassIcon,
+  pHIcon
 };
