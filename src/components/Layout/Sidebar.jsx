@@ -9,8 +9,6 @@ import { useRouter } from 'next/router';
 const Sidebar = ({ className, ...props }) => {
   const router = useRouter();
 
-  console.log(router);
-
   const sidebarItem = [
     {
       text: 'Dashboard',

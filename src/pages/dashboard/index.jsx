@@ -13,19 +13,22 @@ import {
 } from '@/components/Icons';
 import { Chart } from '@/components/Chart';
 import { Button } from '@/components/Button';
+import { HeaderText } from '@/components/Text';
 
 import plantBG from '@/public/img/plant-bg.png';
-import { HeaderText } from '@/components/Text';
+
+import { sensorsData } from 'src/mocks/_sensors';
 
 const DashboardPage = (props) => {
   const [plantingData, setPlantingData] = useState({ data: '' });
+  const [dataSensors, setDataSensors] = useState(sensorsData);
 
   return (
     <main>
       {typeof plantingData.data === 'undefined' ? (
         <DashboardWhenEmpty />
       ) : (
-        <OverviewDashboard data={plantingData} />
+        <OverviewDashboard data={plantingData} sensorsData={dataSensors} />
       )}
     </main>
   );
@@ -50,7 +53,7 @@ const DashboardWhenEmpty = () => {
   );
 };
 
-const OverviewDashboard = ({ data, ...props }) => {
+const OverviewDashboard = ({ data, sensorsData, ...props }) => {
   return (
     <>
       <HeaderText title="Dashboard  " subTitle="Monitoring Status on Wednesday, 04 May 2022" />
@@ -66,8 +69,8 @@ const OverviewDashboard = ({ data, ...props }) => {
             pH and TDS Level of Nutrient Solution
           </h2>
           <div className="chart grid grid-cols-2 gap-x-6">
-            <Chart chartName="pH Level: 6.5" />
-            <Chart chartName="TDS Level: 902ppx" />
+            <Chart chartName="pH Level: 6.5" data={sensorsData} dataKey="ph_data" />
+            <Chart chartName="TDS Level: 902ppx" data={sensorsData} dataKey="tds_data" />
           </div>
         </section>
 
