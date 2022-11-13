@@ -55,7 +55,7 @@ const ControlPage = ({ fetchControlData }) => {
             desc={systemControlData.lamp_status === true ? 'On' : 'Off'}
             icon={LampIcon}
             checked={systemControlData.lamp_status}
-            onClick={handleLampControl}
+            onChange={handleLampControl}
           />
           <CardIconButton
             title="pH Control"
