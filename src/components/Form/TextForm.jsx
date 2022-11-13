@@ -1,13 +1,31 @@
-import classNames from '@/utils/classNames';
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const TextForm = ({label, inputText, ...props }) => {
+const TextForm = ({ label, id, inputText, type, isDisabled, handleChange, ...props }) => {
   return (
-    <div className='w-full px-3 mb-4'>
-      <label className='block tracking-wide font-dm-sans-bold text-sm text-fadeblack py-3'>{label}</label>
-      <input className='shadow appearance-none rounded-full block w-full bg-white text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' type='text' placeholder={inputText}></input>
+    <div {...props}>
+      <div className="mb-4 w-full">
+        <label className="block py-2 font-poppins-bold text-sm tracking-wide text-fadeblack">
+          {label}
+        </label>
+        <input
+          id={id}
+          className="block w-full appearance-none rounded-full border bg-white py-3 px-4 font-poppins text-xs leading-tight text-gray-700 shadow focus:bg-white focus:outline-none"
+          type={type}
+          placeholder={inputText}
+          onChange={handleChange}
+          disabled={isDisabled}
+        ></input>
+      </div>
     </div>
   );
+};
+
+TextForm.propTypes = {
+  label: PropTypes.string.isRequired,
+  inputText: PropTypes.string,
+  TextForm: PropTypes.string,
+  isDisabled: PropTypes.bool
 };
 
 export default TextForm;
