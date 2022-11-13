@@ -16,7 +16,9 @@ const AuthGuard = ({ children }) => {
       })
       .catch((err) => {
         if (err.response.status === 403) {
-          router.push('/login-temp');
+          if (router.pathname !== '/signup-temp' && router.pathname !== '/_error') {
+            router.push('/login-temp');
+          }
         }
       });
   }, []);
