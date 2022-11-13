@@ -1,5 +1,5 @@
-import Form from './Form';
+import ControlForm from './ControlForm';
 import SelectForm from './SelectForm';
 import TextForm from './TextForm';
 
-export { Form, SelectForm, TextForm };
+export { ControlForm, SelectForm, TextForm };

@@ -4,7 +4,7 @@ import { BaseCard } from '.';
 import { Button } from '../Button';
 import Image from 'next/image';
 
-const CardWithButton = ({ title, desc, buttonText, isDisabled, imageUrl, imageAlt, ...props }) => {
+const CardWithButton = ({ title, desc, buttonText, isDisabled, imageUrl, imageAlt, onClick, ...props }) => {
   return (
     <BaseCard className="flex transition-shadow hover:ring-2" {...props}>
       {!isDisabled ? (
@@ -22,7 +22,7 @@ const CardWithButton = ({ title, desc, buttonText, isDisabled, imageUrl, imageAl
                 />
             </div>
             <p className="font-dm-sans-light text-xs py-3 text-off-gray">{desc}</p>
-            <Button>{buttonText}</Button>
+            <Button onClick={onClick}>{buttonText}</Button>
           </div>
         </>
       ) : (
@@ -40,8 +40,7 @@ const CardWithButton = ({ title, desc, buttonText, isDisabled, imageUrl, imageAl
                 />
             </div>
             <p className="font-dm-sans-light text-xs py-3 text-off-gray">{desc}</p>
-            
-            <Button className='cursor-not-allowed bg-gray-400 opacity-50 text-black'>{buttonText}</Button>
+            <Button data-modal-toggle="defaultModal" className='cursor-not-allowed bg-gray-400 opacity-50 text-black'>{buttonText}</Button>
           </div>
           
         </>
