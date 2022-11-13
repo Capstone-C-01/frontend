@@ -5,6 +5,7 @@ import '../styles/globals.css';
 import '../styles/tailwind.css';
 import 'react-image-lightbox/style.css';
 import { AuthGuard } from 'src/guard';
+import { Toaster } from 'react-hot-toast';
 
 export default function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
@@ -15,7 +16,12 @@ export default function MyApp({ Component, pageProps }) {
         <title>Sistem Kebun Otomatis | Capstone 2022</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <AuthGuard>{getLayout(<Component {...pageProps} />)}</AuthGuard>
+      <AuthGuard>
+        <main>
+          <Toaster />
+          {getLayout(<Component {...pageProps} />)}
+        </main>
+      </AuthGuard>
     </>
   );
 }
