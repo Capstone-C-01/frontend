@@ -35,7 +35,7 @@ const Form = ({ formTitle, desc, className, label1, label2, label3, label4, labe
 
               <div class="flex">
                   <select id="countries" class="bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:bg-white focus:border-gray-500 block w-full p-2.5">
-                    <option selected>Select</option>
+                    <option selected></option>
                     <option value="option1">5</option>
                     <option value="option2">10</option>
                     <option value="option3">15</option>
@@ -44,7 +44,7 @@ const Form = ({ formTitle, desc, className, label1, label2, label3, label4, labe
                 <p className='px-3 mt-3 font-dm-sans-regular text-sm text-fadeblack'>seconds, </p>
                 <p className='mt-3 px-3 font-dm-sans-regular text-sm text-fadeblack'>every</p>
                 <select id="countries" class="bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:bg-white focus:border-gray-500 block w-full p-2.5">
-                    <option selected>Select</option>
+                    <option selected></option>
                     <option value="option1">5</option>
                     <option value="option2">10</option>
                     <option value="option3">15</option>
@@ -52,13 +52,9 @@ const Form = ({ formTitle, desc, className, label1, label2, label3, label4, labe
                 </select>
                 <p className='px-3 mt-3 font-dm-sans-regular text-sm text-fadeblack'>seconds</p>
               </div>
-
-
-            
           </div>
-
         </div>
-        <Button className="w-min">Save</Button>
+        <Button className="w-min my-4">Save</Button>
       </div>
     </BaseCard>
   );
