@@ -21,7 +21,6 @@ const ControlPage = ({ fetchControlData }) => {
       .put(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/control/upsert`, systemControlData)
       .then((res) => {
         toast.success('Succesfully Updated System Control');
-        console.log(res);
       })
       .catch((err) => {
         toast.error(`Something wrong. Please try again. Error: ${err}`);
@@ -37,7 +36,9 @@ const ControlPage = ({ fetchControlData }) => {
       status: !currentLampStatus ? 'on' : 'off'
     };
 
-    axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/sensors/relay`, payload);
+    axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/sensors/relay`, payload, {
+      withCredentials: true
+    });
   };
 
   useEffect(() => {

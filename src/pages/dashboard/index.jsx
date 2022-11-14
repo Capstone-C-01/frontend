@@ -18,38 +18,54 @@ import { HeaderText } from '@/components/Text';
 
 import plantBG from '@/public/img/plant-bg.png';
 import moment from 'moment';
+import { useContext } from 'react';
+import { UserContext } from 'src/context/user.context';
+import Link from 'next/link';
 
 const DashboardPage = (props) => {
   const [plantingData, setPlantingData] = useState();
   const [dataSensors, setDataSensors] = useState();
   const [loadingPlant, setLoadingPlant] = useState(true);
   const [loadingSensors, setLoadingSensors] = useState(true);
+  const user = useContext(UserContext);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/sensors`, {
-        params: { device_id: 'esp32_1' }
-      })
-      .then((res) => {
-        setDataSensors(res.data);
-        setLoadingSensors((prev) => false);
-      })
-      .catch((err) => console.log(err));
+    if (user) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/sensors`, {
+          params: { device_id: user.user.device_id }
+        })
+        .then((res) => {
+          setDataSensors(res.data);
+          setLoadingSensors((prev) => false);
+        })
+        .catch((err) => {
+          setDataSensors(() => undefined);
+          setLoadingSensors((prev) => false);
+        });
 
-    axios
-      .get(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/control`, {
-        params: { device_id: 'esp32_1' }
-      })
-      .then((res) => {
-        setPlantingData(res.data);
-        setLoadingPlant((prev) => false);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+      axios
+        .get(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/control`, {
+          params: { device_id: user.user.device_id }
+        })
+        .then((res) => {
+          setPlantingData(res.data);
+          setLoadingPlant((prev) => false);
+        })
+        .catch((err) => {
+          setPlantingData(() => undefined);
+          setLoadingPlant((prev) => false);
+        });
+    }
+  }, [user]);
+
+  useEffect(() => {
+    console.log(plantingData);
+  }, [plantingData]);
 
   return (
     <main>
-      {typeof plantingData === 'undefined' ? (
+      {!plantingData ? (
         <DashboardWhenEmpty />
       ) : (
         <OverviewDashboard
@@ -75,7 +91,9 @@ const DashboardWhenEmpty = () => {
       />
       <div className="flex flex-col items-center justify-center">
         <Image src={plantBG} alt="A set of plant" />
-        <Button className="mt-12">Start Planting</Button>
+        <Link href="/plants/plant-list">
+          <Button className="mt-12">Start Planting</Button>
+        </Link>
       </div>
     </>
   );
