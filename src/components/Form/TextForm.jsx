@@ -15,6 +15,7 @@ const TextForm = ({ label, id, inputText, type, isDisabled, handleChange, ...pro
           placeholder={inputText}
           onChange={handleChange}
           disabled={isDisabled}
+          autoComplete={id === 'password' ? true : false}
         ></input>
       </div>
     </div>

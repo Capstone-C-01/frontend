@@ -27,13 +27,13 @@ const DashboardPage = (props) => {
   const [dataSensors, setDataSensors] = useState();
   const [loadingPlant, setLoadingPlant] = useState(true);
   const [loadingSensors, setLoadingSensors] = useState(true);
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    if (user) {
+    if (typeof user !== 'undefined') {
       axios
         .get(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/sensors`, {
-          params: { device_id: user.user.device_id }
+          params: { device_id: user.device_id }
         })
         .then((res) => {
           setDataSensors(res.data);
@@ -46,7 +46,7 @@ const DashboardPage = (props) => {
 
       axios
         .get(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/control`, {
-          params: { device_id: user.user.device_id }
+          params: { device_id: user.device_id }
         })
         .then((res) => {
           setPlantingData(res.data);

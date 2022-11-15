@@ -77,6 +77,7 @@ const ConfigModal = ({
               id="plant_count"
               className="mb-3 block w-full appearance-none rounded border bg-white py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
               type="number"
+              min={1}
               defaultValue={formData.plant_count}
               onChange={onChange}
             />
@@ -136,6 +137,9 @@ const ConfigModal = ({
               id="ph_min"
               className="mb-3 block w-full appearance-none rounded border bg-white py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
               type="number"
+              min={0}
+              max={formData.ph_max}
+              step="any"
               onChange={onChange}
             />
           </div>
@@ -147,6 +151,9 @@ const ConfigModal = ({
               id="ph_max"
               className="mb-3 block w-full appearance-none rounded border  bg-white py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
               type="number"
+              step="any"
+              min={formData.ph_min}
+              max={14}
               onChange={onChange}
             />
           </div>

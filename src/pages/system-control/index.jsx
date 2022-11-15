@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 import { ControlForm } from '@/components/Form';
 import { HeaderText } from '@/components/Text';
 import { CardWithToggle, CardIconButton } from '@/components/Card';
 import { LampIcon, pHIcon, WaterGlassIcon } from '@/components/Icons';
-import { toast } from 'react-hot-toast';
 
-const ControlPage = ({ fetchControlData }) => {
-  const [systemControlData, setSystemControlData] = useState(fetchControlData);
+import { UserContext } from 'src/context/user.context';
+
+const ControlPage = ({}) => {
+  const { user } = useContext(UserContext);
+  const [systemControlData, setSystemControlData] = useState();
 
   const handleChange = (e) => {
     setSystemControlData((prev) => ({ ...prev, [e.target.id]: Number(e.target.value) }));
@@ -42,79 +45,82 @@ const ControlPage = ({ fetchControlData }) => {
   };
 
   useEffect(() => {
-    console.log(systemControlData);
-  }, [systemControlData]);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/control`, {
+        params: { device_id: user.device_id }
+      })
+      .then((res) => {
+        setSystemControlData(res.data);
+      })
+      .catch((err) => {
+        setSystemControlData(() => undefined);
+      });
+  }, [user]);
 
   return (
     <main>
       <HeaderText title="System Control" subTitle="System status on Wednesday, 04 May 2022" />
-      <section className="chemical-charts mb-12">
-        <h2 className="mb-4 font-dm-sans-medium text-lg text-off-gray">Button Control</h2>
-        <div className="grid-main-3">
-          <CardWithToggle
-            title="Light"
-            desc={systemControlData.lamp_status === true ? 'On' : 'Off'}
-            icon={LampIcon}
-            checked={systemControlData.lamp_status}
-            onChange={handleLampControl}
-          />
-          <CardIconButton
-            title="pH Control"
-            desc="UP to increase pH level and DOWN to decrease pH level"
-            icon={pHIcon}
-            buttonText1="UP"
-            buttonText2="DOWN"
-            isDisabled={false}
-          />
-          <CardIconButton
-            title="TDS (Nutrient) Control"
-            desc="UP to increase TDS level and DOWN to decrease TDS level"
-            icon={WaterGlassIcon}
-            buttonText1="UP"
-            buttonText2="DOWN"
-            isDisabled={false}
-          />
-        </div>
-      </section>
+      {typeof systemControlData !== 'undefined' && (
+        <>
+          <section className="chemical-charts mb-12">
+            <h2 className="mb-4 font-dm-sans-medium text-lg text-off-gray">Button Control</h2>
+            <div className="grid-main-3">
+              <CardWithToggle
+                title="Light"
+                desc={systemControlData.lamp_status === true ? 'On' : 'Off'}
+                icon={LampIcon}
+                checked={systemControlData.lamp_status}
+                onChange={handleLampControl}
+              />
+              <CardIconButton
+                title="pH Control"
+                desc="UP to increase pH level and DOWN to decrease pH level"
+                icon={pHIcon}
+                buttonText1="UP"
+                buttonText2="DOWN"
+                isDisabled={false}
+              />
+              <CardIconButton
+                title="TDS (Nutrient) Control"
+                desc="UP to increase TDS level and DOWN to decrease TDS level"
+                icon={WaterGlassIcon}
+                buttonText1="UP"
+                buttonText2="DOWN"
+                isDisabled={false}
+              />
+            </div>
+          </section>
 
-      <section className="table-reports pb-10">
-        <h2 className="mb-4 font-dm-sans-medium text-lg text-off-gray">Control Setting</h2>
-        <div className="main-table">
-          <ControlForm
-            formTitle="Setting"
-            desc="Set the pH level and the TDS level of your nutrient solution. You can also set the spraying interval too."
-            id1="ph_min"
-            id2="ph_max"
-            id3="tds_min"
-            id4="tds_max"
-            label1="pH Minimum"
-            label2="pH Maximum"
-            label3="TDS Minimum (ppm)"
-            label4="TDS Maximum (ppm)"
-            label5="Spraying duration and interval"
-            inputText1={systemControlData.ph_min}
-            inputText2={systemControlData.ph_max}
-            inputText3={systemControlData.tds_min}
-            inputText4={systemControlData.tds_max}
-            duration={systemControlData.spray_duration}
-            interval={systemControlData.spray_interval}
-            onChange={handleChange}
-            onSubmit={handleSubmit}
-          ></ControlForm>
-        </div>
-      </section>
+          <section className="table-reports pb-10">
+            <h2 className="mb-4 font-dm-sans-medium text-lg text-off-gray">Control Setting</h2>
+            <div className="main-table">
+              <ControlForm
+                formTitle="Setting"
+                desc="Set the pH level and the TDS level of your nutrient solution. You can also set the spraying interval too."
+                id1="ph_min"
+                id2="ph_max"
+                id3="tds_min"
+                id4="tds_max"
+                label1="pH Minimum"
+                label2="pH Maximum"
+                label3="TDS Minimum (ppm)"
+                label4="TDS Maximum (ppm)"
+                label5="Spraying duration and interval"
+                inputText1={systemControlData.ph_min}
+                inputText2={systemControlData.ph_max}
+                inputText3={systemControlData.tds_min}
+                inputText4={systemControlData.tds_max}
+                duration={systemControlData.spray_duration}
+                interval={systemControlData.spray_interval}
+                onChange={handleChange}
+                onSubmit={handleSubmit}
+              ></ControlForm>
+            </div>
+          </section>
+        </>
+      )}
     </main>
   );
 };
 
 export default ControlPage;
-
-export async function getServerSideProps() {
-  const res = await axios
-    .get(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/control?device_id=esp32_1`)
-    .catch((err) => console.log(err));
-  const fetchControlData = res.data;
-  delete fetchControlData._id;
-
-  return { props: { fetchControlData } };
-}

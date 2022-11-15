@@ -10,6 +10,7 @@ import { Button } from '@/components/Button';
 import { UserContext } from 'src/context/user.context';
 
 import plantchart from 'public/img/plant-chart.png';
+import { toast } from 'react-hot-toast';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -36,14 +37,17 @@ const LoginPage = () => {
       .then((res) => {
         setUser((prev) => ({
           ...prev,
-          id: res.data.id,
-          email: res.data.email,
-          username: res.data.username
+          ...res.data
         }));
         typeof window !== 'undefined' && localStorage.setItem('session', res.data.token);
         router.push('/dashboard');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status === 404) toast.error('404. Not Found');
+        else {
+          console.log(err);
+        }
+      });
   };
 
   return (

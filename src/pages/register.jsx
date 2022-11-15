@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,6 +8,7 @@ import { TextForm } from '@/components/Form';
 import { Button } from '@/components/Button';
 
 import plantchart from 'public/img/plant-chart.png';
+import { UserContext } from 'src/context/user.context';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ const RegisterPage = () => {
     password: ''
   });
   const router = useRouter();
+  const { setUser } = useContext(UserContext);
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -30,6 +32,7 @@ const RegisterPage = () => {
     axios
       .post(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/auth/signup`, formData)
       .then((res) => {
+        setUser((prev) => ({ ...prev, ...res.data }));
         typeof window !== 'undefined' && localStorage.setItem('session', res.data.token);
         router.push('/dashboard');
       })

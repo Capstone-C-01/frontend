@@ -11,10 +11,11 @@ import classNames from '@/utils/classNames';
 
 const Header = ({ className, ...props }) => {
   const [showMenu, setShowMenu] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const router = useRouter();
 
   const handleClick = () => {
+    setUser('');
     localStorage.removeItem('session');
     axios
       .post(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/auth/signout`)

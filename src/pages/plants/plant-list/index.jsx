@@ -10,9 +10,10 @@ import { toast } from 'react-hot-toast';
 import { UserContext } from 'src/context/user.context';
 
 const PlantsPage = () => {
+  const [plantingData, setPlantingData] = useState();
   const { user, setUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
-    user_id: user._id,
+    user_id: user?.id,
     device_id: user.device_id,
     plant_name: 'Bokchoy',
     date_planted: moment().toISOString(),
@@ -70,6 +71,21 @@ const PlantsPage = () => {
   };
 
   useEffect(() => {
+    if (user) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/control`, {
+          params: { device_id: user.device_id }
+        })
+        .then((res) => {
+          setPlantingData(res.data);
+        })
+        .catch((err) => {
+          setPlantingData(() => undefined);
+        });
+    }
+  }, [user]);
+
+  useEffect(() => {
     console.log(formData);
   }, [formData]);
 
@@ -83,8 +99,8 @@ const PlantsPage = () => {
             onClick={() => setModalIsOpen(true)}
             title="Bokchoy"
             desc="Ready to harvest 45 to 60 days"
-            buttonText="Plant Now"
-            isDisabled={false}
+            buttonText={typeof plantingData !== 'undefined' ? 'Planted' : 'Plant Now'}
+            isDisabled={typeof plantingData !== 'undefined' ? true : false}
             imageUrl={images[0].src}
           />
           <CardWithButton
