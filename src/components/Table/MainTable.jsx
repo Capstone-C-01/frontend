@@ -5,16 +5,24 @@ import { useTable, usePagination, useSortBy } from 'react-table';
 import classNames from '@/utils/classNames';
 import { SortIcon } from '../Icons';
 
-const MainTable = ({ columnsList, dataList, className, withPagination = true, ...props }) => {
+const MainTable = ({
+  tableData,
+  loading,
+  columnsList,
+  dataList,
+  className,
+  withPagination = true,
+  ...props
+}) => {
   const columns = useMemo(
     () => [
       {
         Header: 'pH',
-        accessor: 'ph'
+        accessor: 'ph_data'
       },
       {
         Header: 'TDS',
-        accessor: 'tds'
+        accessor: 'tds_data'
       },
       {
         Header: 'Water Level',
@@ -22,104 +30,16 @@ const MainTable = ({ columnsList, dataList, className, withPagination = true, ..
       },
       {
         Header: 'Light Status',
-        accessor: 'light_status'
+        accessor: 'lamp_status'
       },
       {
         Header: 'Time',
-        accessor: 'time'
+        accessor: 'createdAt'
       }
     ],
     []
   );
-  const data = useMemo(
-    () => [
-      {
-        ph: '6.87',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.17',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.67',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.37',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.87',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.17',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.67',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.37',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.87',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.17',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.67',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      },
-      {
-        ph: '6.37',
-        tds: '800ppm',
-        water_level: '45%',
-        light_status: 'On',
-        time: 'May 4, 2020'
-      }
-    ],
-    []
-  );
+  const data = useMemo(() => [...tableData], [tableData]);
 
   const {
     getTableProps,
