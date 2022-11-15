@@ -35,10 +35,6 @@ const ConfigModal = ({
     }
   };
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
   function afterOpenModal() {}
 
   function closeModal() {

@@ -24,8 +24,8 @@ const PlantsPage = () => {
     ph_max: 6.0,
     tds_min: 900,
     tds_max: 1200,
-    spray_interval: 10,
-    spray_duration: 10
+    spray_interval: 5,
+    spray_duration: 5
   });
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
