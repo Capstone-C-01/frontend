@@ -61,14 +61,18 @@ const DashboardPage = (props) => {
 
   return (
     <main>
-      {!plantingData ? (
-        <DashboardWhenEmpty />
+      {!loadingPlant ? (
+        !plantingData ? (
+          <DashboardWhenEmpty />
+        ) : (
+          <OverviewDashboard
+            plantingData={plantingData}
+            sensorsData={dataSensors}
+            loading={{ loadingPlant: loadingPlant, loadingSensors: loadingSensors }}
+          />
+        )
       ) : (
-        <OverviewDashboard
-          plantingData={plantingData}
-          sensorsData={dataSensors}
-          loading={{ loadingPlant: loadingPlant, loadingSensors: loadingSensors }}
-        />
+        <></>
       )}
     </main>
   );

@@ -62,12 +62,14 @@ const ReportsPage = () => {
         </div>
       </section>
 
-      <section className="table-reports pb-10">
-        <h2 className="mb-4 font-dm-sans-medium text-lg text-off-gray">Table Reports</h2>
-        <div className="main-table">
-          <MainTable className="w-full" tableData={dataSensors} loading={loadingSensors} />
-        </div>
-      </section>
+      {!loadingSensors && (
+        <section className="table-reports pb-10">
+          <h2 className="mb-4 font-dm-sans-medium text-lg text-off-gray">Table Reports</h2>
+          <div className="main-table">
+            <MainTable className="w-full" tableData={dataSensors} />
+          </div>
+        </section>
+      )}
     </main>
   );
 };

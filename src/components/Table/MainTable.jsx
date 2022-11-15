@@ -7,7 +7,6 @@ import { SortIcon } from '../Icons';
 
 const MainTable = ({
   tableData,
-  loading,
   columnsList,
   dataList,
   className,

@@ -61,13 +61,13 @@ const PlantsPage = () => {
       })
       .then((res) => {
         toast.success('Succesfully Insert System Control');
+        setModalIsOpen(() => false);
       })
       .catch((err) => {
         toast.error(`Something wrong. Please try again. Error: ${err}`);
       });
 
     setUser((prev) => ({ ...prev, device_id: formData.device_id }));
-    setModalIsOpen(() => false);
   };
 
   useEffect(() => {
@@ -84,10 +84,6 @@ const PlantsPage = () => {
         });
     }
   }, [user]);
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   return (
     <main>
