@@ -13,6 +13,9 @@ const Chart = ({ chartName, className, data, dataKey, loading, ...props }) => {
           <LineChart data={data} width={333} height={350}>
             <Line type="monotone" dataKey={dataKey} stroke="#1BA97F" strokeWidth={4} />
             <Tooltip />
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="createdAt" />
+            <YAxis dataKey={dataKey} width={20} />
           </LineChart>
         </div>
       ) : (

@@ -59,10 +59,6 @@ const DashboardPage = (props) => {
     }
   }, [user]);
 
-  useEffect(() => {
-    console.log(plantingData);
-  }, [plantingData]);
-
   return (
     <main>
       {!plantingData ? (
@@ -131,13 +127,13 @@ const OverviewDashboard = ({ plantingData, sensorsData, loading, ...props }) => 
           </h2>
           <div className="chart grid grid-cols-2 gap-x-6">
             <Chart
-              chartName="pH Level: 6.5"
+              chartName="pH Leve"
               data={sensorsData}
               dataKey="ph_data"
               loading={loading.loadingSensors}
             />
             <Chart
-              chartName="TDS Level: 902ppx"
+              chartName="TDS Level"
               data={sensorsData}
               dataKey="tds_data"
               loading={loading.loadingSensors}
