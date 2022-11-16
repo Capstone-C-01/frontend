@@ -41,6 +41,8 @@ const Form = ({
               id={id1}
               className="mb-3 block w-full appearance-none rounded border bg-white py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
               type="number"
+              min={0}
+              max={inputText2}
               onChange={onChange}
               defaultValue={inputText1}
             />
@@ -53,6 +55,8 @@ const Form = ({
               id={id2}
               className="mb-3 block w-full appearance-none rounded border  bg-white py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
               type="number"
+              min={inputText1}
+              max={14}
               onChange={onChange}
               defaultValue={inputText2}
             />
@@ -67,6 +71,8 @@ const Form = ({
               id={id3}
               className="mb-3 block w-full appearance-none rounded border  bg-white py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
               type="number"
+              min={0}
+              max={inputText4}
               onChange={onChange}
               defaultValue={inputText3}
             />
@@ -79,6 +85,7 @@ const Form = ({
               id={id4}
               className="mb-3 block w-full appearance-none rounded border  bg-white py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
               type="number"
+              min={inputText3}
               onChange={onChange}
               defaultValue={inputText4}
             />

@@ -10,7 +10,7 @@ export const sensorsData = [...Array(20)].map((item, index) => ({
   water_level: percent[index],
   ph_data: ph[index],
   tds_data: price[index] * 10,
-  createdAt: moment('2022-11-08T07:43:13.510Z').add(index, 'minute').toISOString(),
+  createdAt: moment().add(index, 'minute').toISOString(),
   updatedAt: '2022-11-08T07:43:13.510Z',
   __v: 0
 }));

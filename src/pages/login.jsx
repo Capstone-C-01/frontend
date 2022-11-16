@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
@@ -7,7 +7,10 @@ import { useRouter } from 'next/router';
 import { TextForm } from '@/components/Form';
 import { Button } from '@/components/Button';
 
+import { UserContext } from 'src/context/user.context';
+
 import plantchart from 'public/img/plant-chart.png';
+import { toast } from 'react-hot-toast';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +18,7 @@ const LoginPage = () => {
     password: ''
   });
   const router = useRouter();
+  const { setUser } = useContext(UserContext);
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -27,12 +31,23 @@ const LoginPage = () => {
     e.preventDefault();
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/auth/signin`, formData)
+      .post(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/auth/signin`, formData, {
+        withCredentials: true
+      })
       .then((res) => {
+        setUser((prev) => ({
+          ...prev,
+          ...res.data
+        }));
         typeof window !== 'undefined' && localStorage.setItem('session', res.data.token);
         router.push('/dashboard');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.status === 404) toast.error('404. Not Found');
+        else {
+          console.log(err);
+        }
+      });
   };
 
   return (
@@ -65,12 +80,12 @@ const LoginPage = () => {
                 handleChange={handleChange}
               />
               <div className="text-right">
-                <a
+                <Link
                   class="inline-block align-baseline font-poppins-bold text-sm text-gray-500"
                   href="/forgot-pass"
                 >
                   Forgot Password
-                </a>
+                </Link>
               </div>
               <Button className="mt-3 w-full rounded-full">Sign In</Button>
               <div className="text-center">

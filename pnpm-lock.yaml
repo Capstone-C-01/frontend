@@ -19,6 +19,7 @@ specifiers:
   react-dom: 18.2.0
   react-hot-toast: ^2.4.0
   react-image-lightbox: ^5.1.4
+  react-loading-skeleton: ^3.1.0
   react-modal: ^3.16.1
   react-table: ^7.8.0
   recharts: ^2.1.16
@@ -37,6 +38,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
   react-image-lightbox: 5.1.4_biqbaboplfbrettd7655fr4n2y
+  react-loading-skeleton: 3.1.0_react@18.2.0
   react-modal: 3.16.1_biqbaboplfbrettd7655fr4n2y
   react-table: 7.8.0_react@18.2.0
   recharts: 2.1.16_v2m5e27vhdewzwhryxwfaorcca
@@ -2070,6 +2072,14 @@ packages:
 
   /react-lifecycles-compat/3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
+    dev: false
+
+  /react-loading-skeleton/3.1.0_react@18.2.0:
+    resolution: {integrity: sha512-j1U1CWWs68nBPOg7tkQqnlFcAMFF6oEK6MgqAo15f8A5p7mjH6xyKn2gHbkcimpwfO0VQXqxAswnSYVr8lWzjw==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-modal/3.16.1_biqbaboplfbrettd7655fr4n2y:
