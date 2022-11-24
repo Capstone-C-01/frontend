@@ -8,8 +8,10 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
 import { UserContext } from 'src/context/user.context';
+import { plantPrefilledParams } from 'src/data/plantsData';
 
 const PlantsPage = () => {
+  const plantDefaultParams = plantPrefilledParams;
   const [plantingData, setPlantingData] = useState();
   const { user, setUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
@@ -70,6 +72,17 @@ const PlantsPage = () => {
     setUser((prev) => ({ ...prev, device_id: formData.device_id }));
   };
 
+  const handlePlantClick = (plantName) => {
+    const prefillData = plantDefaultParams[plantName];
+    console.log(prefillData);
+    setFormData((prev) => ({ ...prev, ...prefillData }));
+    setModalIsOpen(() => true);
+  };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
   useEffect(() => {
     if (user) {
       axios
@@ -92,7 +105,7 @@ const PlantsPage = () => {
       <section className="chemical-charts mb-12">
         <div className="grid-main-3">
           <CardWithButton
-            onClick={() => setModalIsOpen(true)}
+            onClick={() => handlePlantClick('bokchoy')}
             title="Bokchoy"
             desc="Ready to harvest 45 to 60 days"
             buttonText={typeof plantingData !== 'undefined' ? 'Planted' : 'Plant Now'}
@@ -102,9 +115,10 @@ const PlantsPage = () => {
           <CardWithButton
             title="Lettuce"
             desc="Ready to harvest 24 to 32 days"
-            buttonText="Plant Now"
-            isDisabled={true}
+            buttonText={typeof plantingData !== 'undefined' ? 'Planted' : 'Plant Now'}
+            isDisabled={typeof plantingData !== 'undefined' ? true : false}
             imageUrl={images[1].src}
+            onClick={() => handlePlantClick('lettuce')}
           />
           <CardWithButton
             title="Spinach"

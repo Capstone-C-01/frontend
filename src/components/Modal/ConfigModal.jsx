@@ -137,6 +137,7 @@ const ConfigModal = ({
               max={formData.ph_max}
               step="any"
               onChange={onChange}
+              defaultValue={formData.ph_min}
             />
           </div>
           <div className="w-full px-3 md:w-1/2">
@@ -151,6 +152,7 @@ const ConfigModal = ({
               min={formData.ph_min}
               max={14}
               onChange={onChange}
+              defaultValue={formData.ph_max}
             />
           </div>
         </div>
@@ -164,6 +166,7 @@ const ConfigModal = ({
               className="mb-3 block w-full appearance-none rounded border  bg-white py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
               type="number"
               onChange={onChange}
+              defaultValue={formData.tds_min}
             />
           </div>
           <div className="w-1/2 px-3 md:w-1/2">
@@ -175,6 +178,7 @@ const ConfigModal = ({
               className="mb-3 block w-full appearance-none rounded border  bg-white py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none"
               type="number"
               onChange={onChange}
+              defaultValue={formData.tds_max}
             />
           </div>
         </div>
@@ -191,16 +195,6 @@ const ConfigModal = ({
             <option value="Indoor">Indoor</option>
             <option value="Outdoor">Outdoor</option>
           </select>
-          <div className="py-3">
-            <label>
-              <input
-                type="checkbox"
-                className="font-dm-sans text-sm text-gray-700 accent-main-green"
-                defaultChecked
-              />
-              Filled by system
-            </label>
-          </div>
         </div>
         <div className="flex justify-end py-3">
           <Button
