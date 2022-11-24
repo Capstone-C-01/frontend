@@ -21,6 +21,7 @@ import moment from 'moment';
 import { useContext } from 'react';
 import { UserContext } from 'src/context/user.context';
 import Link from 'next/link';
+import { sensorsData } from 'src/mocks/_sensors';
 
 const DashboardPage = (props) => {
   const [plantingData, setPlantingData] = useState();

@@ -7,6 +7,7 @@ import { MainTable } from '@/components/Table';
 
 import { UserContext } from 'src/context/user.context';
 import moment from 'moment';
+import { sensorsData } from 'src/mocks/_sensors';
 
 const ReportsPage = () => {
   const { user } = useContext(UserContext);

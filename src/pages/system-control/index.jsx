@@ -44,6 +44,30 @@ const ControlPage = ({}) => {
     });
   };
 
+  const handleNutrientAdd = () => {
+    const payload = {
+      device_id: systemControlData.device_id,
+      relay_number: 3,
+      status: 'manual'
+    };
+
+    axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/sensors/relay`, payload, {
+      withCredentials: true
+    });
+  };
+
+  const handlePHDown = () => {
+    const payload = {
+      device_id: systemControlData.device_id,
+      relay_number: 4,
+      status: 'manual'
+    };
+
+    axios.post(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/sensors/relay`, payload, {
+      withCredentials: true
+    });
+  };
+
   useEffect(() => {
     axios
       .get(`${process.env.NEXT_PUBLIC_ENDPOINT_API}/control`, {
@@ -74,19 +98,19 @@ const ControlPage = ({}) => {
               />
               <CardIconButton
                 title="pH Control"
-                desc="UP to increase pH level and DOWN to decrease pH level"
+                desc="Decrease pH level"
                 icon={pHIcon}
-                buttonText1="UP"
-                buttonText2="DOWN"
+                buttonText1="Down"
                 isDisabled={false}
+                onClick={handlePHDown}
               />
               <CardIconButton
                 title="TDS (Nutrient) Control"
-                desc="UP to increase TDS level and DOWN to decrease TDS level"
+                desc="Add PPM TDS level"
                 icon={WaterGlassIcon}
-                buttonText1="UP"
-                buttonText2="DOWN"
+                buttonText1="ADD"
                 isDisabled={false}
+                onClick={handleNutrientAdd}
               />
             </div>
           </section>
