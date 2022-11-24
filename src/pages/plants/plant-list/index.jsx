@@ -17,7 +17,7 @@ const PlantsPage = () => {
   const [formData, setFormData] = useState({
     user_id: user?.id,
     device_id: user.device_id,
-    plant_name: 'Bokchoy',
+    plant_name: '',
     date_planted: moment().toISOString(),
     plant_count: 0,
     installment: 'Outdoor',
